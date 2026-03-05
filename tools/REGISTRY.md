@@ -14,6 +14,8 @@ Quick reference for tools available in this repository.
 | lemlist | Email Outreach | ✓ | - | [✓](clis/lemlist.js) | - | [lemlist.md](integrations/lemlist.md) |
 | resend | Email | ✓ | ✓ | [✓](clis/resend.js) | ✓ | [resend.md](integrations/resend.md) |
 | stripe | Payments | ✓ | ✓ | - | ✓ | [stripe.md](integrations/stripe.md) |
+| google-ads | Ads | ✓ | ✓ | - | ✓ | [google-ads.md](integrations/google-ads.md) |
+| meta-ads | Ads | ✓ | - | - | ✓ | [meta-ads.md](integrations/meta-ads.md) |
 
 ## Notes
 
