@@ -204,6 +204,7 @@ tools/
     ├── resend.md
     ├── google-ads.md
     ├── meta-ads.md
+    ├── vercel.md
     ├── hubspot.md
     └── stripe.md
 ```
