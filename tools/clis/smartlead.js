@@ -52,6 +52,17 @@ function readJsonArg(value) {
   }
 }
 
+function applyListPagination(data, offsetArg, limitArg) {
+  if (!Array.isArray(data)) return data
+  const offset = Number.parseInt(offsetArg || '0', 10)
+  const limit = limitArg === undefined ? undefined : Number.parseInt(limitArg, 10)
+  const safeOffset = Number.isNaN(offset) || offset < 0 ? 0 : offset
+  if (limit === undefined || Number.isNaN(limit) || limit < 0) {
+    return data.slice(safeOffset)
+  }
+  return data.slice(safeOffset, safeOffset + limit)
+}
+
 async function api(method, path, body, query) {
   const url = buildUrl(path, query)
 
@@ -89,7 +100,7 @@ async function api(method, path, body, query) {
 function usage() {
   return {
     campaigns: {
-      list: 'campaigns list [--offset <n>] [--limit <n>]',
+      list: 'campaigns list [--offset <n>] [--limit <n>] # offset/limit are applied client-side',
       get: 'campaigns get --campaign-id <id>',
       create: 'campaigns create --name <string> [--client-id <id>] [--json <raw-json>]',
       status: 'campaigns status --campaign-id <id>',
@@ -116,7 +127,12 @@ async function main() {
     case 'campaigns':
       switch (sub) {
         case 'list': {
-          result = await api('GET', '/campaigns', undefined, { offset: args.offset, limit: args.limit })
+          const campaigns = await api('GET', '/campaigns')
+          if (campaigns && campaigns.status && campaigns.error) {
+            result = campaigns
+            break
+          }
+          result = applyListPagination(campaigns, args.offset, args.limit)
           break
         }
         case 'get': {

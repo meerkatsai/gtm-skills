@@ -38,7 +38,7 @@ Cold email outreach platform for campaign automation, lead management, sender he
 
 ```bash
 # List campaigns
-GET https://server.smartlead.ai/api/v1/campaigns?api_key={SMARTLEAD_API_KEY}&limit=20
+GET https://server.smartlead.ai/api/v1/campaigns?api_key={SMARTLEAD_API_KEY}
 
 # Get campaign
 GET https://server.smartlead.ai/api/v1/campaigns/{campaign_id}?api_key={SMARTLEAD_API_KEY}
@@ -73,7 +73,9 @@ Content-Type: application/json
 
 ```bash
 # Campaigns
-node tools/clis/smartlead.js campaigns list --limit 20
+node tools/clis/smartlead.js campaigns list
+# Optional local pagination
+node tools/clis/smartlead.js campaigns list --offset 0 --limit 20
 node tools/clis/smartlead.js campaigns get --campaign-id 12345
 node tools/clis/smartlead.js campaigns create --name "Q2 SaaS Outbound"
 node tools/clis/smartlead.js campaigns status --campaign-id 12345
@@ -94,5 +96,6 @@ node tools/clis/smartlead.js campaigns statistics --campaign-id 12345 --limit 50
 ## Notes
 
 - Use `--dry-run` on CLI commands to preview the request without sending data.
+- `campaigns list` pagination flags (`--offset`, `--limit`) are applied client-side by the CLI for compatibility.
 - Smartlead MCP currently supports SSE transport in the official guide.
 - Smartlead API limits depend on account plan and endpoint usage.

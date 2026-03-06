@@ -16,7 +16,7 @@ Use this skill to run Smartlead tasks through the repository CLI at `tools/clis/
 ## Core Workflow
 
 1. Validate authentication with a read call:
-   - `node tools/clis/smartlead.js campaigns list --limit 1`
+   - `node tools/clis/smartlead.js campaigns list`
 2. Execute the smallest command that satisfies the request.
 3. Prefer `--dry-run` first for write operations (`create`, `set-status`, `add`).
 4. Return JSON results and summarize key IDs and next actions.
@@ -25,7 +25,8 @@ Use this skill to run Smartlead tasks through the repository CLI at `tools/clis/
 
 ### Campaigns
 
-- List: `node tools/clis/smartlead.js campaigns list --limit 20 --offset 0`
+- List: `node tools/clis/smartlead.js campaigns list`
+- List with local pagination: `node tools/clis/smartlead.js campaigns list --offset 0 --limit 20`
 - Get: `node tools/clis/smartlead.js campaigns get --campaign-id <id>`
 - Create: `node tools/clis/smartlead.js campaigns create --name "<name>" [--client-id <id>]`
 - Status: `node tools/clis/smartlead.js campaigns status --campaign-id <id>`
