@@ -14,7 +14,9 @@ B2B prospecting and data enrichment platform with 210M+ contacts and 35M+ compan
 ## Authentication
 
 - **Type**: API Key
-- **Header**: `x-api-key: {api_key}` or `Authorization: Bearer {token}`
+- **Official API support**: `x-api-key: {api_key}` header or bearer token
+- **Current CLI behavior**: sends `api_key` in request body for compatibility with the implemented endpoints
+- **Env var**: `APOLLO_API_KEY`
 - **Get key**: Settings > Integrations > API at https://app.apollo.io
 
 ## Common Agent Operations
@@ -22,9 +24,10 @@ B2B prospecting and data enrichment platform with 210M+ contacts and 35M+ compan
 ### People Search
 
 ```bash
-POST https://api.apollo.io/api/v1/mixed_people/api_search
+POST https://api.apollo.io/api/v1/mixed_people/search
 
 {
+  "api_key": "{APOLLO_API_KEY}",
   "person_titles": ["Sales Manager"],
   "person_locations": ["United States"],
   "organization_num_employees_ranges": ["1,100"],
@@ -38,6 +41,7 @@ POST https://api.apollo.io/api/v1/mixed_people/api_search
 POST https://api.apollo.io/api/v1/people/match
 
 {
+  "api_key": "{APOLLO_API_KEY}",
   "first_name": "Tim",
   "last_name": "Zheng",
   "domain": "apollo.io"
@@ -50,6 +54,7 @@ POST https://api.apollo.io/api/v1/people/match
 POST https://api.apollo.io/api/v1/people/bulk_match
 
 {
+  "api_key": "{APOLLO_API_KEY}",
   "details": [
     { "email": "tim@apollo.io" },
     { "first_name": "Jane", "last_name": "Doe", "domain": "example.com" }
@@ -63,6 +68,7 @@ POST https://api.apollo.io/api/v1/people/bulk_match
 POST https://api.apollo.io/api/v1/mixed_companies/search
 
 {
+  "api_key": "{APOLLO_API_KEY}",
   "organization_locations": ["United States"],
   "organization_num_employees_ranges": ["1,100"],
   "page": 1
@@ -75,6 +81,7 @@ POST https://api.apollo.io/api/v1/mixed_companies/search
 POST https://api.apollo.io/api/v1/organizations/enrich
 
 {
+  "api_key": "{APOLLO_API_KEY}",
   "domain": "apollo.io"
 }
 ```

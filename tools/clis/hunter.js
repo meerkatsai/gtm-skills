@@ -2,8 +2,9 @@
 
 const API_KEY = process.env.HUNTER_API_KEY
 const BASE_URL = 'https://api.hunter.io/v2'
+const IS_DRY_RUN = process.argv.includes('--dry-run')
 
-if (!API_KEY) {
+if (!API_KEY && !IS_DRY_RUN) {
   console.error(JSON.stringify({ error: 'HUNTER_API_KEY environment variable required' }))
   process.exit(1)
 }

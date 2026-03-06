@@ -1,0 +1,14 @@
+{
+  "version": "1",
+  "cases": [
+    {
+      "name": "basic-competitor-brief",
+      "input": "Compare product A with top alternatives for SMB sales teams.",
+      "expect": [
+        "comparison",
+        "positioning",
+        "recommendation"
+      ]
+    }
+  ]
+}

@@ -72,13 +72,13 @@ node tools/clis/instantly.js accounts warmup-status --account-id me@example.com
 
 ```bash
 # Campaign analytics
-node tools/clis/instantly.js analytics campaign --campaign-id cam_abc123 --start 2024-01-01 --end 2024-01-31
+node tools/clis/instantly.js analytics campaign --campaign-id cam_abc123 --start-date 2024-01-01 --end-date 2024-01-31
 
 # Step-by-step analytics
 node tools/clis/instantly.js analytics steps --campaign-id cam_abc123
 
 # Account-level analytics
-node tools/clis/instantly.js analytics account --start 2024-01-01 --end 2024-01-31
+node tools/clis/instantly.js analytics account --start-date 2024-01-01 --end-date 2024-01-31
 ```
 
 ### Manage blocklist

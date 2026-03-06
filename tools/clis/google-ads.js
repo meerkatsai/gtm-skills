@@ -4,8 +4,9 @@ const TOKEN = process.env.GOOGLE_ADS_TOKEN
 const DEV_TOKEN = process.env.GOOGLE_ADS_DEVELOPER_TOKEN
 const CUSTOMER_ID = process.env.GOOGLE_ADS_CUSTOMER_ID
 const BASE_URL = 'https://googleads.googleapis.com/v14'
+const IS_DRY_RUN = process.argv.includes('--dry-run')
 
-if (!TOKEN || !DEV_TOKEN || !CUSTOMER_ID) {
+if ((!TOKEN || !DEV_TOKEN || !CUSTOMER_ID) && !IS_DRY_RUN) {
   console.error(JSON.stringify({ error: 'GOOGLE_ADS_TOKEN, GOOGLE_ADS_DEVELOPER_TOKEN, and GOOGLE_ADS_CUSTOMER_ID environment variables required' }))
   process.exit(1)
 }

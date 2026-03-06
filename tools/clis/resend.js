@@ -2,8 +2,9 @@
 
 const API_KEY = process.env.RESEND_API_KEY
 const BASE_URL = 'https://api.resend.com'
+const IS_DRY_RUN = process.argv.includes('--dry-run')
 
-if (!API_KEY) {
+if (!API_KEY && !IS_DRY_RUN) {
   console.error(JSON.stringify({ error: 'RESEND_API_KEY environment variable required' }))
   process.exit(1)
 }
@@ -81,9 +82,11 @@ async function main() {
           break
         }
         case 'get':
+          if (!rest[0]) { result = { error: 'Email ID required' }; break }
           result = await api('GET', `/emails/${rest[0]}`)
           break
         case 'cancel':
+          if (!rest[0]) { result = { error: 'Email ID required' }; break }
           result = await api('POST', `/emails/${rest[0]}/cancel`)
           break
         default:
@@ -100,15 +103,18 @@ async function main() {
           break
         }
         case 'get':
+          if (!rest[0]) { result = { error: 'Domain ID required' }; break }
           result = await api('GET', `/domains/${rest[0]}`)
           break
         case 'create':
           result = await api('POST', '/domains', { name: args.name, region: args.region })
           break
         case 'verify':
+          if (!rest[0]) { result = { error: 'Domain ID required' }; break }
           result = await api('POST', `/domains/${rest[0]}/verify`)
           break
         case 'delete':
+          if (!rest[0]) { result = { error: 'Domain ID required' }; break }
           result = await api('DELETE', `/domains/${rest[0]}`)
           break
         default:
@@ -129,6 +135,7 @@ async function main() {
           break
         }
         case 'delete':
+          if (!rest[0]) { result = { error: 'API key ID required' }; break }
           result = await api('DELETE', `/api-keys/${rest[0]}`)
           break
         default:
@@ -142,12 +149,14 @@ async function main() {
           result = await api('GET', '/audiences')
           break
         case 'get':
+          if (!rest[0]) { result = { error: 'Audience ID required' }; break }
           result = await api('GET', `/audiences/${rest[0]}`)
           break
         case 'create':
           result = await api('POST', '/audiences', { name: args.name })
           break
         case 'delete':
+          if (!rest[0]) { result = { error: 'Audience ID required' }; break }
           result = await api('DELETE', `/audiences/${rest[0]}`)
           break
         default:
@@ -204,6 +213,7 @@ async function main() {
           result = await api('GET', '/webhooks')
           break
         case 'get':
+          if (!rest[0]) { result = { error: 'Webhook ID required' }; break }
           result = await api('GET', `/webhooks/${rest[0]}`)
           break
         case 'create': {
@@ -213,6 +223,7 @@ async function main() {
           break
         }
         case 'delete':
+          if (!rest[0]) { result = { error: 'Webhook ID required' }; break }
           result = await api('DELETE', `/webhooks/${rest[0]}`)
           break
         default:
@@ -242,6 +253,7 @@ async function main() {
           break
         }
         case 'get':
+          if (!rest[0]) { result = { error: 'Template ID required' }; break }
           result = await api('GET', `/templates/${rest[0]}`)
           break
         case 'create': {
@@ -258,6 +270,7 @@ async function main() {
           break
         }
         case 'update': {
+          if (!rest[0]) { result = { error: 'Template ID required' }; break }
           const body = {}
           if (args.name) body.name = args.name
           if (args.html) body.html = args.html
@@ -273,12 +286,15 @@ async function main() {
           break
         }
         case 'delete':
+          if (!rest[0]) { result = { error: 'Template ID required' }; break }
           result = await api('DELETE', `/templates/${rest[0]}`)
           break
         case 'publish':
+          if (!rest[0]) { result = { error: 'Template ID required' }; break }
           result = await api('POST', `/templates/${rest[0]}/publish`)
           break
         case 'duplicate':
+          if (!rest[0]) { result = { error: 'Template ID required' }; break }
           result = await api('POST', `/templates/${rest[0]}/duplicate`)
           break
         default:
@@ -295,6 +311,7 @@ async function main() {
           break
         }
         case 'get':
+          if (!rest[0]) { result = { error: 'Broadcast ID required' }; break }
           result = await api('GET', `/broadcasts/${rest[0]}`)
           break
         case 'create': {
@@ -307,12 +324,14 @@ async function main() {
           break
         }
         case 'send': {
+          if (!rest[0]) { result = { error: 'Broadcast ID required' }; break }
           const body = {}
           if (args['scheduled-at']) body.scheduled_at = args['scheduled-at']
           result = await api('POST', `/broadcasts/${rest[0]}/send`, body)
           break
         }
         case 'delete':
+          if (!rest[0]) { result = { error: 'Broadcast ID required' }; break }
           result = await api('DELETE', `/broadcasts/${rest[0]}`)
           break
         default:
@@ -329,12 +348,14 @@ async function main() {
           break
         }
         case 'get':
+          if (!rest[0]) { result = { error: 'Segment ID required' }; break }
           result = await api('GET', `/segments/${rest[0]}`)
           break
         case 'create':
           result = await api('POST', '/segments', { name: args.name })
           break
         case 'delete':
+          if (!rest[0]) { result = { error: 'Segment ID required' }; break }
           result = await api('DELETE', `/segments/${rest[0]}`)
           break
         default:

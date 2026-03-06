@@ -3,8 +3,9 @@
 const TOKEN = process.env.META_ACCESS_TOKEN
 const DEFAULT_ACCOUNT_ID = process.env.META_AD_ACCOUNT_ID
 const BASE_URL = 'https://graph.facebook.com/v18.0'
+const IS_DRY_RUN = process.argv.includes('--dry-run')
 
-if (!TOKEN) {
+if (!TOKEN && !IS_DRY_RUN) {
   console.error(JSON.stringify({ error: 'META_ACCESS_TOKEN environment variable required' }))
   process.exit(1)
 }

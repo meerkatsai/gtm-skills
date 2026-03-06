@@ -1,0 +1,12 @@
+{
+  "name": "gtm-skills",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GTM skills repository with zero-dependency CLIs",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
