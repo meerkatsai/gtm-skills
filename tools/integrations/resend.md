@@ -1,134 +1,168 @@
 # Resend
 
-Transactional and marketing email platform with APIs for sends, domains, audiences, templates, and webhooks.
+Developer-friendly transactional email service with modern API.
 
 ## Capabilities
 
 | Integration | Available | Notes |
 |-------------|-----------|-------|
-| API | ✓ | REST API for emails, domains, audiences, templates, webhooks |
+| API | ✓ | Simple REST API for sending emails |
 | MCP | ✓ | Available via Resend MCP server |
-| CLI | [✓](../clis/resend.js) | Zero-dependency Node.js CLI in this repo |
-| SDK | ✓ | Official SDKs (Node.js, Python, Go, and more) |
+| CLI | - | Not available |
+| SDK | ✓ | Official SDKs for Node.js, Python, Go, etc. |
 
 ## Authentication
 
 - **Type**: API Key
 - **Header**: `Authorization: Bearer {api_key}`
-- **Env var**: `RESEND_API_KEY`
-- **Get key**: Resend dashboard > API Keys
+- **Get key**: API Keys section in Resend dashboard
 
 ## Common Agent Operations
 
-### Send transactional email
+### Send email
 
 ```bash
-node tools/clis/resend.js send \
-  --from hello@example.com \
-  --to user@example.com \
-  --subject "Welcome" \
-  --html "<h1>Welcome</h1>"
+POST https://api.resend.com/emails
+
+{
+  "from": "hello@example.com",
+  "to": ["user@example.com"],
+  "subject": "Welcome!",
+  "html": "<h1>Welcome to our app!</h1>"
+}
+```
+
+### Send with React template
+
+```bash
+POST https://api.resend.com/emails
+
+{
+  "from": "hello@example.com",
+  "to": ["user@example.com"],
+  "subject": "Welcome!",
+  "react": "WelcomeEmail",
+  "props": {
+    "name": "John"
+  }
+}
 ```
 
 ### Get email status
 
 ```bash
-node tools/clis/resend.js emails get re_123
+GET https://api.resend.com/emails/{email_id}
 ```
 
-### List recent emails
+### List emails
 
 ```bash
-node tools/clis/resend.js emails list --limit 20
+GET https://api.resend.com/emails
 ```
 
-### Cancel scheduled email
+### Send batch emails
 
 ```bash
-node tools/clis/resend.js emails cancel re_123
+POST https://api.resend.com/emails/batch
+
+[
+  {
+    "from": "hello@example.com",
+    "to": ["user1@example.com"],
+    "subject": "Welcome User 1"
+  },
+  {
+    "from": "hello@example.com",
+    "to": ["user2@example.com"],
+    "subject": "Welcome User 2"
+  }
+]
 ```
 
-### Domain management
+### List domains
 
 ```bash
-# list domains
-node tools/clis/resend.js domains list --limit 20
-
-# verify domain
-node tools/clis/resend.js domains verify dom_123
+GET https://api.resend.com/domains
 ```
 
-### Audience and contacts
+### Verify domain
 
 ```bash
-# create audience
-node tools/clis/resend.js audiences create --name "Newsletter"
-
-# add contact
-node tools/clis/resend.js contacts aud_123 create --email user@example.com --first-name Jane --last-name Doe
+POST https://api.resend.com/domains/{domain_id}/verify
 ```
 
-### Templates
+## Node.js SDK
+
+### Install
 
 ```bash
-# list templates
-node tools/clis/resend.js templates list --limit 20
-
-# publish template
-node tools/clis/resend.js templates publish tpl_123
+npm install resend
 ```
 
-### Webhooks
+### Usage
 
-```bash
-# list webhooks
-node tools/clis/resend.js webhooks list
+```typescript
+import { Resend } from 'resend';
 
-# create webhook
-node tools/clis/resend.js webhooks create --url https://example.com/webhooks/resend --events email.sent,email.delivered,email.bounced
+const resend = new Resend('re_xxx');
+
+await resend.emails.send({
+  from: 'hello@example.com',
+  to: 'user@example.com',
+  subject: 'Welcome!',
+  html: '<h1>Welcome!</h1>'
+});
 ```
 
-## Key Metrics
+### With React Email
 
-| Metric | Description |
-|--------|-------------|
-| `queued` | Accepted for processing |
-| `sent` | Sent to receiving mail server |
-| `delivered` | Delivered to recipient mailbox |
-| `opened` | Open event (when tracking enabled) |
-| `clicked` | Click event (when tracking enabled) |
-| `bounced` | Delivery failed |
-| `complained` | Marked as spam |
+```typescript
+import { WelcomeEmail } from './emails/welcome';
+
+await resend.emails.send({
+  from: 'hello@example.com',
+  to: 'user@example.com',
+  subject: 'Welcome!',
+  react: WelcomeEmail({ name: 'John' })
+});
+```
+
+## Email Statuses
+
+- `queued` - Email queued for delivery
+- `sent` - Email sent to recipient server
+- `delivered` - Email delivered
+- `opened` - Email opened (if tracking enabled)
+- `clicked` - Link clicked (if tracking enabled)
+- `bounced` - Email bounced
+- `complained` - Marked as spam
 
 ## Webhook Events
 
-| Event | Meaning |
-|-------|---------|
-| `email.sent` | Email accepted/sent |
-| `email.delivered` | Delivered successfully |
-| `email.opened` | Recipient opened |
-| `email.clicked` | Recipient clicked a link |
-| `email.bounced` | Bounce occurred |
-| `email.complained` | Spam complaint recorded |
+| Event | When |
+|-------|------|
+| `email.sent` | Email sent |
+| `email.delivered` | Email delivered |
+| `email.opened` | Email opened |
+| `email.clicked` | Link clicked |
+| `email.bounced` | Email bounced |
+| `email.complained` | Spam complaint |
 
 ## When to Use
 
-- Transactional emails (OTP, reset, receipts, notifications)
-- Lifecycle and operational messaging
-- Domain verification and sender setup
-- Delivery status troubleshooting
-- Lightweight audience/contact management
+- Sending transactional emails
+- Welcome emails, password resets
+- Receipt and notification emails
+- Developer-friendly email integration
+- React-based email templates
 
 ## Rate Limits
 
-- Rate limits and quotas vary by plan
-- Back off and retry on `429` responses
-- Use batch endpoints for high-volume sends
+- Free: 100 emails/day, 3,000/month
+- Pro: 100 emails/second
+- Higher limits on scale plans
 
 ## Relevant Skills
 
-- resend
-- send-email
-- templates
-- resend-inbound
-- agent-email-inbox
+- email-sequence
+- onboarding-cro

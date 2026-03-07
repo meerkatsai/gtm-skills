@@ -16,8 +16,6 @@ Quick reference for tools available in this repository.
 | stripe | Payments | ✓ | ✓ | - | ✓ | [stripe.md](integrations/stripe.md) |
 | google-ads | Ads | ✓ | ✓ | [✓](clis/google-ads.js) | ✓ | [google-ads.md](integrations/google-ads.md) |
 | meta-ads | Ads | ✓ | - | [✓](clis/meta-ads.js) | ✓ | [meta-ads.md](integrations/meta-ads.md) |
-| vercel | Hosting | ✓ | ✓ | [✓](clis/vercel.js) | ✓ | [vercel.md](integrations/vercel.md) |
-| pipedrive | CRM | ✓ | - | - | ✓ | [pipedrive.md](integrations/pipedrive.md) |
 
 ## Notes
 
