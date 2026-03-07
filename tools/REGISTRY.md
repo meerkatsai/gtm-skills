@@ -9,6 +9,12 @@ Quick reference for tools available in this repository.
 | smartlead | Email Outreach | ✓ | ✓ | [✓](clis/smartlead.js) | - | [smartlead.md](integrations/smartlead.md) |
 | instantly | Email Outreach | ✓ | - | [✓](clis/instantly.js) | - | [instantly.md](integrations/instantly.md) |
 | apollo | Data Enrichment | ✓ | - | [✓](clis/apollo.js) | - | [apollo.md](integrations/apollo.md) |
+| icypeas | Data Enrichment | ✓ | - | [✓](clis/icypeas.js) | - | [icypeas.md](integrations/icypeas.md) |
+| findymail | Data Enrichment | ✓ | - | [✓](clis/findymail.js) | - | [findymail.md](integrations/findymail.md) |
+| neverbounce | Data Enrichment | ✓ | - | [✓](clis/neverbounce.js) | - | [neverbounce.md](integrations/neverbounce.md) |
+| millionverifier | Data Enrichment | ✓ | - | [✓](clis/millionverifier.js) | - | [millionverifier.md](integrations/millionverifier.md) |
+| prospeo | Data Enrichment | ✓ | - | [✓](clis/prospeo.js) | - | [prospeo.md](integrations/prospeo.md) |
+| rocketreach | Data Enrichment | ✓ | - | [✓](clis/rocketreach.js) | ✓ | [rocketreach.md](integrations/rocketreach.md) |
 | hubspot | CRM | ✓ | - | - | ✓ | [hubspot.md](integrations/hubspot.md) |
 | hunter | Email Outreach | ✓ | - | [✓](clis/hunter.js) | - | [hunter.md](integrations/hunter.md) |
 | lemlist | Email Outreach | ✓ | - | [✓](clis/lemlist.js) | - | [lemlist.md](integrations/lemlist.md) |

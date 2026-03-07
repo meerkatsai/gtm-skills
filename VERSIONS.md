@@ -1,5 +1,9 @@
 # Versions
 
+## 0.1.5 - 2026-03-07
+
+- Added `email-find-verify` skill to route email discovery/verification tasks after user chooses a provider tool.
+
 ## 0.1.4 - 2026-03-07
 
 - Added `web-search-scrape` skill to route web search/scrape tasks after user selects `parallel-ai`, `tavily-ai`, or `firecrawl`.

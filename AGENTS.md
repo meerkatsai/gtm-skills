@@ -188,6 +188,12 @@ tools/
 ├── REGISTRY.md
 ├── clis/
 │   ├── apollo.js
+│   ├── icypeas.js
+│   ├── findymail.js
+│   ├── neverbounce.js
+│   ├── millionverifier.js
+│   ├── prospeo.js
+│   ├── rocketreach.js
 │   ├── smartlead.js
 │   ├── instantly.js
 │   ├── hunter.js
@@ -200,6 +206,12 @@ tools/
 │   └── tavily-ai.js
 └── integrations/
     ├── apollo.md
+    ├── icypeas.md
+    ├── findymail.md
+    ├── neverbounce.md
+    ├── millionverifier.md
+    ├── prospeo.md
+    ├── rocketreach.md
     ├── smartlead.md
     ├── instantly.md
     ├── hunter.md
