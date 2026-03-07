@@ -1,5 +1,9 @@
 # Versions
 
+## 0.1.4 - 2026-03-07
+
+- Added Resend skill set: `resend`, `send-email`, `templates`, `resend-inbound`, and `agent-email-inbox`.
+
 ## 0.1.3 - 2026-03-06
 
 - Added `pipedrive-deal-ops` and `pipedrive-contact-ops` skills for common Pipedrive CRM workflows.

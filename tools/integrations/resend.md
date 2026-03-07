@@ -127,6 +127,8 @@ node tools/clis/resend.js webhooks create --url https://example.com/webhooks/res
 
 ## Relevant Skills
 
-- smartlead-outbound
-- pipedrive-contact-ops
-- product-marketing-context
+- resend
+- send-email
+- templates
+- resend-inbound
+- agent-email-inbox
